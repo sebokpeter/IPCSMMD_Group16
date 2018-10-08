@@ -6,7 +6,7 @@ namespace ipcsmmd_webshop.Core.Entity
 {
     public enum BeerType { Dark, Brown, Light}
 
-    class Beer
+    public class Beer
     {
         public int ID { get; set; }
         public String Name { get; set; }
