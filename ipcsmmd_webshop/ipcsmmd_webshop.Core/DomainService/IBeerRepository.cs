@@ -4,7 +4,8 @@ using System.Text;
 
 namespace ipcsmmd_webshop.Core.DomainService
 {
-    interface IBeerRepository
+    public interface IBeerRepository
     {
+
     }
 }

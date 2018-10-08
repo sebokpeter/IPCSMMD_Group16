@@ -9,8 +9,6 @@ namespace ipcsmmd_webshop.Core.DomainService
     {
         //Returns all Customers
         IEnumerable<Customer> GetAll();
-        //Returns a filtered list of Customers
-        IEnumerable<Customer> GetFiltered(/*Filter filter*/);
         //Returns a Customer by ID
         IEnumerable<Customer> GetCustomerByID(int id);
 
