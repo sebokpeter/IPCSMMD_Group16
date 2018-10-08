@@ -6,7 +6,10 @@
 
   <ItemGroup>
     <Folder Include="ApplicationService\Impl\" />
-    <Folder Include="DomainService\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
   <ItemGroup>
