@@ -9,14 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ipcsmmd_webshop.Core.Entity\ipcsmmd_webshop.Core.Entity.csproj" />
     <ProjectReference Include="..\ipcsmmd_webshop.Core\ipcsmmd_webshop.Core.csproj" />
   </ItemGroup>

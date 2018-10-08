@@ -8,12 +8,14 @@ namespace ipcsmmd_webshop.Core.Entity
 
     public class Beer
     {
-        public int ID { get; set; }
+        public uint ID { get; set; }
         public String Name { get; set; }
         public String Brand { get; set; }
         public BeerType Type { get; set; }
         public float Percentage { get; set; }
         public double Price { get; set; }
+        public string ImageURL { get; set; }
+        public uint Stock { get; set; }
 
         public override string ToString()
         {
