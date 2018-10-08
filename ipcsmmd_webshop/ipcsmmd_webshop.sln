@@ -5,6 +5,18 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipcsmmd_webshop", "ipcsmmd_webshop\ipcsmmd_webshop.csproj", "{80CB2727-CCB7-4853-8A06-3D2BFD473D19}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{FDCE256F-115E-4BD5-9C21-CDFDFA142C51}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{36636DC2-1F9D-4AFA-9DEC-2D012EFF1D93}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{3FCBCCA5-4764-426C-BB38-A9F744A9D636}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipcsmmd_webshop.Core", "ipcsmmd_webshop.Core\ipcsmmd_webshop.Core.csproj", "{ADB7A12A-54F4-44F8-8331-FD120931A7B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipcsmmd_webshop.Core.Entity", "ipcsmmd_webshop.Core.Entity\ipcsmmd_webshop.Core.Entity.csproj", "{ED6870DC-67DE-4D27-AF5B-5FA082FF2ED0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipcsmmd_webshop.Infrastructure.Data", "ipcsmmd_webshop.Infrastructure.Data\ipcsmmd_webshop.Infrastructure.Data.csproj", "{155FDFD5-F6E5-449E-A4F5-DD093A12514C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +27,27 @@ Global
 		{80CB2727-CCB7-4853-8A06-3D2BFD473D19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80CB2727-CCB7-4853-8A06-3D2BFD473D19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80CB2727-CCB7-4853-8A06-3D2BFD473D19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADB7A12A-54F4-44F8-8331-FD120931A7B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADB7A12A-54F4-44F8-8331-FD120931A7B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADB7A12A-54F4-44F8-8331-FD120931A7B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADB7A12A-54F4-44F8-8331-FD120931A7B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED6870DC-67DE-4D27-AF5B-5FA082FF2ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED6870DC-67DE-4D27-AF5B-5FA082FF2ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED6870DC-67DE-4D27-AF5B-5FA082FF2ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED6870DC-67DE-4D27-AF5B-5FA082FF2ED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{155FDFD5-F6E5-449E-A4F5-DD093A12514C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{155FDFD5-F6E5-449E-A4F5-DD093A12514C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{155FDFD5-F6E5-449E-A4F5-DD093A12514C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{155FDFD5-F6E5-449E-A4F5-DD093A12514C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{80CB2727-CCB7-4853-8A06-3D2BFD473D19} = {3FCBCCA5-4764-426C-BB38-A9F744A9D636}
+		{ADB7A12A-54F4-44F8-8331-FD120931A7B4} = {FDCE256F-115E-4BD5-9C21-CDFDFA142C51}
+		{ED6870DC-67DE-4D27-AF5B-5FA082FF2ED0} = {FDCE256F-115E-4BD5-9C21-CDFDFA142C51}
+		{155FDFD5-F6E5-449E-A4F5-DD093A12514C} = {36636DC2-1F9D-4AFA-9DEC-2D012EFF1D93}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF75EF35-4D1A-4D62-BCE1-974037DFCE7E}
