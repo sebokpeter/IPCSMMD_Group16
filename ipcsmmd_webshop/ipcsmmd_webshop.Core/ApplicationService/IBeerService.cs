@@ -19,8 +19,7 @@ namespace ipcsmmd_webshop.Core.ApplicationService
 
         Beer UpdateBeer(Beer beer);
 
-        // TODO: Add filtering methonds
-        //List<Beer> GetFilteredBeers(BeerFilter filter);
+        List<Beer> GetFilteredBeers(BeerFilter filter);
 
         List<Beer> GetBeersByType(BeerType type);
 
