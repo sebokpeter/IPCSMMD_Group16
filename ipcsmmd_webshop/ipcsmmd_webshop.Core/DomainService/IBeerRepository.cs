@@ -15,10 +15,10 @@ namespace ipcsmmd_webshop.Core.DomainService
         IEnumerable<Beer> GetByID(int id);
 
         //Saves a new Beer to the database
-        Beer Save(Customer cust);
+        Beer Save(Beer beer);
 
         //Updates an existing Beer in the database
-        Beer Update(int id, Customer cust);
+        Beer Update(int id, Beer beer);
 
         //Removes a Beer from the database by the provided ID
         Beer Remove(int id);

@@ -9,13 +9,29 @@ namespace ipcsmmd_webshop.Core.Entity
     public class Beer
     {
         public uint ID { get; set; }
-        public String Name { get; set; }
-        public String Brand { get; set; }
+        public string Name { get; set; }
+        public string Brand { get; set; }
         public BeerType Type { get; set; }
         public float Percentage { get; set; }
         public double Price { get; set; }
         public string ImageURL { get; set; }
         public uint Stock { get; set; }
+
+        public Beer()
+        {
+
+        }
+
+        public Beer(string name, string brand, BeerType type, float percentage, double price, string url, uint stock)
+        {
+            this.Name = name;
+            this.Brand = brand;
+            this.Type = type;
+            this.Percentage = percentage;
+            this.Price = price;
+            this.ImageURL = url;
+            this.Stock = stock;
+        }
 
         public override string ToString()
         {
