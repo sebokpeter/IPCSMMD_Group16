@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ipcsmmd_webshop", "ipcsmmd_webshop\ipcsmmd_webshop.csproj", "{80CB2727-CCB7-4853-8A06-3D2BFD473D19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipcsmmd_webshop", "ipcsmmd_webshop\ipcsmmd_webshop.csproj", "{80CB2727-CCB7-4853-8A06-3D2BFD473D19}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{FDCE256F-115E-4BD5-9C21-CDFDFA142C51}"
 EndProject
@@ -11,13 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{3FCBCCA5-4764-426C-BB38-A9F744A9D636}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ipcsmmd_webshop.Core", "ipcsmmd_webshop.Core\ipcsmmd_webshop.Core.csproj", "{ADB7A12A-54F4-44F8-8331-FD120931A7B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipcsmmd_webshop.Core", "ipcsmmd_webshop.Core\ipcsmmd_webshop.Core.csproj", "{ADB7A12A-54F4-44F8-8331-FD120931A7B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ipcsmmd_webshop.Core.Entity", "ipcsmmd_webshop.Core.Entity\ipcsmmd_webshop.Core.Entity.csproj", "{ED6870DC-67DE-4D27-AF5B-5FA082FF2ED0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipcsmmd_webshop.Core.Entity", "ipcsmmd_webshop.Core.Entity\ipcsmmd_webshop.Core.Entity.csproj", "{ED6870DC-67DE-4D27-AF5B-5FA082FF2ED0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ipcsmmd_webshop.Infrastructure.Data", "ipcsmmd_webshop.Infrastructure.Data\ipcsmmd_webshop.Infrastructure.Data.csproj", "{155FDFD5-F6E5-449E-A4F5-DD093A12514C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCore", "TestCore\TestCore.csproj", "{6E1B384E-580B-4F20-9DF5-F60CDA20F89B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipcsmmd_webshop.Infrastructure.Data", "ipcsmmd_webshop.Infrastructure.Data\ipcsmmd_webshop.Infrastructure.Data.csproj", "{155FDFD5-F6E5-449E-A4F5-DD093A12514C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{155FDFD5-F6E5-449E-A4F5-DD093A12514C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{155FDFD5-F6E5-449E-A4F5-DD093A12514C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{155FDFD5-F6E5-449E-A4F5-DD093A12514C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E1B384E-580B-4F20-9DF5-F60CDA20F89B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E1B384E-580B-4F20-9DF5-F60CDA20F89B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E1B384E-580B-4F20-9DF5-F60CDA20F89B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E1B384E-580B-4F20-9DF5-F60CDA20F89B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
