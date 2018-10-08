@@ -75,21 +75,5 @@ namespace TestCore.ApplicationService.Impl
             Assert.Equal("Cannot add a Beer without brand!", ex.Message);
         }
 
-        [Fact]
-        public void CreateNewBeer()
-        {
-            var repo = new Mock<IBeerRepository>();
-            IBeerService beerService = new BeerService(repo.Object);
-            Beer newBeer = new Beer()
-            {
-                Name = "Best_Beer",
-                Brand = "Best_Brand",
-                Percentage = 50f,
-                Type = BeerType.Dark
-            };
-
-            Beer returnedBeer = beerService.AddBeer(newBeer);
-            Assert.Equal(returnedBeer, newBeer);
-        }
     }
 }
