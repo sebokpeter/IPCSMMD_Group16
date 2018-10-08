@@ -34,6 +34,10 @@ namespace ipcsmmd_webshop.Core.ApplicationService.Impl
             {
                 throw new InvalidDataException("Cannot add a Beer without brand!");
             }
+            if (beer.Price == 0.0f)
+            {
+                throw new InvalidDataException("Cannot add a Beer without price!");
+            }
 
             return _beerRepo.Save(beer);
         }

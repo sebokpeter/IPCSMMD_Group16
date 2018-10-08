@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using ipcsmmd_webshop.Core.ApplicationService;
 using ipcsmmd_webshop.Core.ApplicationService.Impl;
 using ipcsmmd_webshop.Core.DomainService;
@@ -52,11 +50,29 @@ namespace TestCore.ApplicationService.Impl
             {
                 Brand = "Best_Brand",
                 Percentage = 50f,
+                Price = 1f,
                 Type = BeerType.Dark
             };
 
             Exception ex = Assert.Throws<InvalidDataException>(() => beerService.AddBeer(newBeer));
             Assert.Equal("Cannot add a Beer without name!", ex.Message);
+        }
+
+        [Fact]
+        public void CreateNewBeerWithoutPriceThrowsException()
+        {
+            var repo = new Mock<IBeerRepository>();
+            IBeerService beerService = new BeerService(repo.Object);
+            Beer newBeer = new Beer()
+            {
+                Name = "Best_Beer",
+                Brand = "Best_Brand",
+                Percentage = 50f,
+                Type = BeerType.Dark
+            };
+
+            Exception ex = Assert.Throws<InvalidDataException>(() => beerService.AddBeer(newBeer));
+            Assert.Equal("Cannot add a Beer without price!", ex.Message);
         }
 
         [Fact]
