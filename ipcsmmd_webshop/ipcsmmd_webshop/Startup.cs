@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ipcsmmd_webshop.Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Serialization;
 
 namespace ipcsmmd_webshop
 {
@@ -35,19 +38,47 @@ namespace ipcsmmd_webshop
         {
             if (_env.IsDevelopment())
             {
-                // TODO: finish startup file
+                services.AddDbContext<WebShopContext>(
+                    opt => opt.UseSqlite("Data Source = WebShop.db"));
+
+            }
+            else if (_env.IsProduction())
+            {
+                services.AddDbContext<WebShopContext>(
+                    opt => opt.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));   
             }
 
+            // TODO: dependency injection
+            //services.AddScoped<>
+
+            services.AddMvc().AddJsonOptions(opt =>
+            {
+                opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment()) {
+            if (env.IsDevelopment())
+            {
+                using (IServiceScope scope = app.ApplicationServices.CreateScope())
+                {
+                    WebShopContext ctx = scope.ServiceProvider.GetService<WebShopContext>();
+                    //TODO: seed database
+                }
                 app.UseDeveloperExceptionPage();
             }
-            else {
+            else
+            {
+                using (IServiceScope scope = app.ApplicationServices.CreateScope())
+                {
+                    WebShopContext ctx = scope.ServiceProvider.GetService<WebShopContext>();
+                    ctx.Database.EnsureCreated();
+                }
+
                 app.UseHsts();
             }
 
