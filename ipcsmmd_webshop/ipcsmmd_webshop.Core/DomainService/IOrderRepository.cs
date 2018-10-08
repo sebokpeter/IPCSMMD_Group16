@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ipcsmmd_webshop.Core.DomainService
 {
-    interface IOrderRepository
+    public interface IOrderRepository
     {
     }
 }

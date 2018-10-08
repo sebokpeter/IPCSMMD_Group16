@@ -6,7 +6,7 @@ using ipcsmmd_webshop.Core.Entity;
 
 namespace ipcsmmd_webshop.Core.ApplicationService
 {
-    interface ICustomerService
+    public interface ICustomerService
     {
         List<Customer> GetCustomers();
 
