@@ -10,7 +10,7 @@ namespace ipcsmmd_webshop.Core.DomainService
         //Returns all Customers
         IEnumerable<Customer> GetAll();
         //Returns a Customer by the provided ID
-        IEnumerable<Customer> GetCustomerByID(int id);
+        Customer GetCustomerByID(int id);
 
         //Saves a new Customer to the database 
         Customer Save(Customer cust);

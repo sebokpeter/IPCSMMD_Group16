@@ -12,7 +12,7 @@ namespace ipcsmmd_webshop.Core.DomainService
         //Returns a filtered list of Beer
         IEnumerable<Beer> GetFiltered(/*BeerFilter filter*/);
         //Returns a Beer by the provided ID
-        IEnumerable<Beer> GetByID(int id);
+        Beer GetByID(int id);
 
         //Saves a new Beer to the database
         Beer Save(Beer beer);
