@@ -91,5 +91,23 @@ namespace TestCore.ApplicationService.Impl
             Assert.Equal("Cannot add a Beer without brand!", ex.Message);
         }
 
+        [Fact]
+        public void CreateNewBeerShouldCallBeerRepoSaveMethodOnce()
+        {
+            var repo = new Mock<IBeerRepository>();
+            IBeerService beerService = new BeerService(repo.Object);
+
+            Beer newBeer = new Beer()
+            {
+                Name = "Best_Beer",
+                Brand = "Best_Brand",
+                Percentage = 50f,
+                Price = 1d,
+                Type = BeerType.Dark
+            };
+
+            beerService.AddBeer(newBeer);
+            repo.Verify(x => x.Save(It.IsAny<Beer>()), Times.Once);
+        }
     }
 }
