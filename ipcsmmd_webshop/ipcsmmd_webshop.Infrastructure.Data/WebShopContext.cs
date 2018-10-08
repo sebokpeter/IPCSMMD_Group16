@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
 
 namespace ipcsmmd_webshop.Infrastructure.Data
 {
-    class WebShopContext : DbContext
+    public class WebShopContext : DbContext
     {
     }
 }
