@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
 {
-    class OrderRepository : IOrderRepository
+    public class OrderRepository : IOrderRepository
     {
         private readonly WebShopContext _ctx;
 
