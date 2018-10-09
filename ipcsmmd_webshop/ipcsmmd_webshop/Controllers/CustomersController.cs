@@ -13,7 +13,6 @@ namespace ipcsmmd_webshop.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
-        // GET: api/Customer
         private readonly ICustomerService _customerService;
 
         public CustomersController(ICustomerService customerService)
@@ -23,7 +22,7 @@ namespace ipcsmmd_webshop.Controllers
 
         // GET: api/Customers
         [HttpGet]
-        public ActionResult<IEnumerable<Customer>> GetAll()
+        public ActionResult<List<Customer>> Get()
         {
             try {
                 return Ok(_customerService.GetAllCustomers());
