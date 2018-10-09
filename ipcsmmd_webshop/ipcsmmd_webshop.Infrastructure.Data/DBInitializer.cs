@@ -14,12 +14,15 @@ namespace ipcsmmd_webshop.Infrastructure.Data
 
             #region Customers
             Customer cust1 = ctx.Customers.Add(new Customer() {
+                Email = "cust1@fakemail.dk",
                 Address = "BongiStreet",
                 FirstName = "John",
-                LastName = "Olesen"
+                LastName = "Olesen",
+                PhoneNumber = "+4512345678"
             }).Entity;
 
             Customer cust2 = ctx.Customers.Add(new Customer() {
+                Email = "cust2@fakemail.dk",
                 Address = "BongiStreet 22",
                 FirstName = "Bill",
                 LastName = "Bøllesen"

@@ -24,7 +24,9 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
 
         public Customer GetCustomerByID(int id)
         {
-            return _ctx.Customers.FirstOrDefault(c => c.ID == id);
+            return _ctx.Customers
+                .Include(c => c.Orders)
+                .FirstOrDefault(c => c.ID == id);
         }
 
         public Customer Save(Customer cust)
@@ -34,19 +36,24 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
             return customer;
         }
 
-        public Customer Update(int id, Customer cust)
+        public Customer Update(Customer cust)
         {
             _ctx.Attach(cust).State = EntityState.Modified;
-            _ctx.Entry(cust).Reference(p => p.Orders).IsModified = true;
+            _ctx.Entry(cust).Collection(c => c.Orders).IsModified = true;
+            var orders = _ctx.Orders.Where(o => o.Customer.ID == cust.ID && !cust.Orders.Exists(co => co.ID == o.ID));
+            foreach (var order in orders) {
+                order.Customer = null;
+                _ctx.Entry(order).Reference(o => o.Customer).IsModified = true;
+            }
             _ctx.SaveChanges();
             return cust;
         }
 
-        public Customer Remove(int id)
+        /*public Customer Remove(int id)
         {
             Customer custRemoved = _ctx.Remove(new Customer { ID = id }).Entity;
             _ctx.SaveChanges();
             return custRemoved;
-        }
+        }*/
     }
 }
