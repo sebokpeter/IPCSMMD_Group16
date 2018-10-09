@@ -226,7 +226,7 @@ namespace TestCore.ApplicationService.Impl
         }
 
         /******************************************************************************/
-        //GetBeersByType test//
+                                //GetBeersByType test//
 
         [Fact]
         public void GetBeersByTypeShouldCallRepoGetAllOnce()
@@ -318,6 +318,72 @@ namespace TestCore.ApplicationService.Impl
                 throw new Xunit.Sdk.XunitException($"Incorrect type.\nExpected: {BeerType.Light}");
             }
 
+        }
+
+        /******************************************************************************/
+                            //GetFilteredBeers test//
+
+        [Fact]
+        public void GetFilteredBeersShouldCallRepoGetFilteredOnce()
+        {
+            var repo = new Mock<IBeerRepository>();
+            IBeerService service = new BeerService(repo.Object);
+
+            BeerFilter filter = new BeerFilter()
+            {
+                CurrentPage = 1,
+                ItemsPerPage = 10,
+                IsAscending = true,
+                SearchField = BeerFilter.Field.Id
+            };
+
+            service.GetFilteredBeers(filter);
+            repo.Verify(x => x.GetFiltered(filter), Times.Once);
+
+        }
+
+        /******************************************************************************/
+                           //RemoveBeer test//
+
+        [Fact]
+        public void RemoveBeerShouldCallRepoRemoveOnce()
+        {
+            var repo = new Mock<IBeerRepository>();
+            IBeerService service = new BeerService(repo.Object);
+
+            Beer beerToRemove = new Beer()
+            {
+                Name = "Best_Beer_Dark_1",
+                Brand = "Best_Brand",
+                Percentage = 50f,
+                Price = 1d,
+                Type = BeerType.Dark
+            };
+
+            service.RemoveBeer((int)beerToRemove.ID);
+            repo.Verify(x => x.Remove((int)beerToRemove.ID));
+        }
+
+        /******************************************************************************/
+                //UpdateBeer test//
+
+        [Fact]
+        public void UpdateBeerShouldCallRepoUpdateOnce()
+        {
+            var repo = new Mock<IBeerRepository>();
+            IBeerService service = new BeerService(repo.Object);
+
+            Beer beerToUpdate = new Beer()
+            {
+                Name = "Best_Beer_Dark_1",
+                Brand = "Best_Brand",
+                Percentage = 50f,
+                Price = 1d,
+                Type = BeerType.Dark
+            };
+
+            service.UpdateBeer(beerToUpdate);
+            repo.Verify(x => x.Update( beerToUpdate));
         }
     }
 }

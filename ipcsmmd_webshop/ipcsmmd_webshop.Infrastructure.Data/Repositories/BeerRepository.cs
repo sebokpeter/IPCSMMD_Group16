@@ -29,12 +29,62 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
 
         public IEnumerable<Beer> GetFiltered(BeerFilter beerFilter)
         {
-            throw new NotImplementedException();
+            if (beerFilter == null)
+            {
+                return _ctx.Beers;
+            }
+
+            IEnumerable<Beer> beers = _ctx.Beers
+                .Skip((beerFilter.CurrentPage - 1) * beerFilter.ItemsPerPage)
+                .Take(beerFilter.ItemsPerPage);
+
+            if (beerFilter.IsAscending)
+            {
+                switch(beerFilter.SearchField)
+                {
+                    case BeerFilter.Field.Id:
+                        beers = beers.OrderBy(x => x.ID);
+                        break;
+                    case BeerFilter.Field.Name:
+                        beers = beers.OrderBy(x => x.Name);
+                        break;
+                    case BeerFilter.Field.Brand:
+                        beers = beers.OrderBy(x => x.Brand);
+                        break;
+                    case BeerFilter.Field.Type:
+                        beers = beers.OrderBy(x => x.Type);
+                        break;
+                }    
+            }
+            else
+            {
+                switch (beerFilter.SearchField)
+                {
+                    case BeerFilter.Field.Id:
+                        beers = beers.OrderByDescending(x => x.ID);
+                        break;
+                    case BeerFilter.Field.Name:
+                        beers = beers.OrderByDescending(x => x.Name);
+                        break;
+                    case BeerFilter.Field.Type:
+                        beers = beers.OrderByDescending(x => x.Type);
+                        break;
+                    case BeerFilter.Field.Brand:
+                        beers = beers.OrderByDescending(x => x.Brand);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return beers;
         }
 
         public Beer Remove(int id)
         {
-            throw new NotImplementedException();
+            Beer beerToRemove = GetByID(id);
+            _ctx.Beers.Remove(beerToRemove);
+            _ctx.SaveChanges();
+            return beerToRemove;
         }
 
         public Beer Save(Beer beer)
@@ -44,9 +94,11 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
             return beerSave;
         }
 
-        public Beer Update(int id, Beer beer)
+        public Beer Update(Beer beer)
         {
-            throw new NotImplementedException();
+            _ctx.Attach(beer).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _ctx.SaveChanges();
+            return beer;
         }
     }
 }

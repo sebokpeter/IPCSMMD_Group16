@@ -79,22 +79,22 @@ namespace ipcsmmd_webshop.Core.ApplicationService.Impl
 
         public List<Beer> GetFilteredBeers(BeerFilter filter)
         {
-            throw new NotImplementedException();
+            return _beerRepo.GetFiltered(filter).ToList();
         }
 
         public IEnumerable<Beer> ReadBeers()
         {
-            throw new NotImplementedException();
+            return _beerRepo.GetAll();
         }
 
         public Beer RemoveBeer(int id)
         {
-            throw new NotImplementedException();
+            return _beerRepo.Remove(id);
         }
 
         public Beer UpdateBeer(Beer beer)
         {
-            throw new NotImplementedException();
+            return _beerRepo.Update(beer);
         }
     }
 }
