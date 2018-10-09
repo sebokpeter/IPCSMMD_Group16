@@ -49,11 +49,11 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
             return cust;
         }
 
-        /*public Customer Remove(int id)
+        public Customer Remove(int id)
         {
             Customer custRemoved = _ctx.Remove(new Customer { ID = id }).Entity;
             _ctx.SaveChanges();
             return custRemoved;
-        }*/
+        }
     }
 }
