@@ -24,7 +24,7 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
 
         public Beer GetByID(int id)
         {
-            return _ctx.Beers.FirstOrDefault(b => b.ID == id);
+            return _ctx.Beers.Include(b => b.OrderLines).FirstOrDefault(b => b.ID == id);
         }
 
         public IEnumerable<Beer> GetFiltered(BeerFilter beerFilter)
