@@ -67,7 +67,7 @@ namespace ipcsmmd_webshop
                 using (IServiceScope scope = app.ApplicationServices.CreateScope())
                 {
                     WebShopContext ctx = scope.ServiceProvider.GetService<WebShopContext>();
-                    //TODO: seed database
+                    DBInitializer.SeedDB(ctx);
                 }
                 app.UseDeveloperExceptionPage();
             }
