@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ipcsmmd_webshop.Core.ApplicationService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,13 @@ namespace ipcsmmd_webshop.Controllers
     [ApiController]
     public class BeersController : ControllerBase
     {
+        private readonly IBeerService _service;
+
+        public BeersController(IBeerService service)
+        {
+            _service = service;
+        }
+
         // GET: api/Beers
         [HttpGet]
         public IEnumerable<string> Get()
