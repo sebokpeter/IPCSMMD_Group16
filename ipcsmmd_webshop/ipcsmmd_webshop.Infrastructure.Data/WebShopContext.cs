@@ -30,6 +30,7 @@ namespace ipcsmmd_webshop.Infrastructure.Data
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<Beer> Beers { get; set; }
     }
 }
