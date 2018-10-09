@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using ipcsmmd_webshop.Core.DomainService;
 using ipcsmmd_webshop.Core.Entity;
@@ -39,24 +40,23 @@ namespace ipcsmmd_webshop.Core.ApplicationService.Impl
             return _crepo.GetCustomerByID(id);
         }
 
-        public List<Customer> GetCustomers()
+        public List<Customer> GetAllCustomers()
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Customer> ReadCustomers()
-        {
-            return _crepo.GetAll();
-        }
-
-        public Customer RemoveCustomer(int id)
-        {
-            throw new NotImplementedException();
+            return _crepo.GetAll().ToList();
         }
 
         public Customer UpdateCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            if (customer.ID == 0)
+                throw new ArgumentException("Missing customer ID!");
+            return _crepo.Update(customer);
+        }
+
+        public Customer RemoveCustomer(int id)
+        {
+            if (id == 0)
+                throw new ArgumentException("Missing customer ID!");
+            return _crepo.Remove(id);
         }
     }
 }
