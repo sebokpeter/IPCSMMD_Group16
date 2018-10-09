@@ -26,6 +26,8 @@ namespace ipcsmmd_webshop.Infrastructure.Data
                 .WithMany(b => b.OrderLines)
                 .OnDelete(DeleteBehavior.SetNull);
 
+            modelBuilder.Entity<OrderLine>()
+                .HasKey(ol => new { ol.OrderID, ol.BeerID });
         }
 
         public DbSet<Customer> Customers { get; set; }
