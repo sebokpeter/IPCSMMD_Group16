@@ -18,7 +18,5 @@ namespace ipcsmmd_webshop.Core.DomainService
         //Updates an existing Customer
         Customer Update(int id, Customer cust);
         
-        //Deletes a Customer by the provided ID
-        Customer Remove(int id);
     }
 }
