@@ -44,7 +44,7 @@ namespace ipcsmmd_webshop.Core.ApplicationService.Impl
             return _crepo.GetAll();
         }
 
-        public Customer UpdateCustomer(Customer customer)
+        public Customer UpdateCustomer(int id, Customer customer)
         {
             throw new NotImplementedException();
         }

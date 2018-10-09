@@ -9,7 +9,6 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
 {
     public class BeerRepository : IBeerRepository
     {
-
         private WebShopContext _ctx;
 
         public BeerRepository(WebShopContext ctx)
