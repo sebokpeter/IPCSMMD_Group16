@@ -13,6 +13,7 @@ namespace ipcsmmd_webshop.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
+        // GET: api/Customer
         private readonly ICustomerService _customerService;
 
         public CustomersController(ICustomerService customerService)
@@ -73,7 +74,7 @@ namespace ipcsmmd_webshop.Controllers
             }
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Customers/5
         [HttpDelete("{id}")]
         public ActionResult<Customer> Delete(int id)
         {
