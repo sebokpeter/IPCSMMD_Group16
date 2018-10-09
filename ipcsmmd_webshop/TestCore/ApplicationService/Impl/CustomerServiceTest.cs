@@ -13,6 +13,7 @@ namespace TestCore.ApplicationService.Impl
 {
     public class CustomerServiceTest
     {
+        #region AddCustomer
         [Fact]
         public void CreateCustomerWithIDThrowsException()
         {
@@ -84,5 +85,17 @@ namespace TestCore.ApplicationService.Impl
             Exception e = Assert.Throws<InvalidDataException>(() => customerService.AddCustomer(newCustomer));
             Assert.Equal("Cannot add customer without address!", e.Message);
         }
+        #endregion
+
+        #region GetCustomer
+        [Fact]
+        public void GetCustommerWithIDMissingIDThrowsException()
+        {
+            var moqRep = new Mock<ICustomerRepository>();
+            ICustomerService customerService = new CustomerService(moqRep.Object);
+            Exception e = Assert.Throws<ArgumentException>(() => customerService.GetCustomerByID(new int()));
+            Assert.Equal("Missing customer ID!", e.Message);
+        }
+        #endregion
     }
 }
