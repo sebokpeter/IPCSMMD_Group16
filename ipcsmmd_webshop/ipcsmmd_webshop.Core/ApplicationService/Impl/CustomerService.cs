@@ -39,14 +39,16 @@ namespace ipcsmmd_webshop.Core.ApplicationService.Impl
             return _crepo.GetCustomerByID(id);
         }
 
-        public IEnumerable<Customer> ReadCustomers()
+        public IEnumerable<Customer> GetAllCustomers()
         {
             return _crepo.GetAll();
         }
 
-        public Customer UpdateCustomer(int id, Customer customer)
+        public Customer UpdateCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            if (customer.ID == 0)
+                throw new ArgumentException("Missing customer ID!");
+            return _crepo.Update(customer);
         }
     }
 }
