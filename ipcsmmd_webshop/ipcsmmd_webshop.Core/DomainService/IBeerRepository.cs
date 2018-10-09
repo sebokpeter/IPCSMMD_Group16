@@ -10,7 +10,7 @@ namespace ipcsmmd_webshop.Core.DomainService
         //Returns a list of all the Beer from the database
         IEnumerable<Beer> GetAll();
         //Returns a filtered list of Beer
-        IEnumerable<Beer> GetFiltered(/*BeerFilter filter*/);
+        IEnumerable<Beer> GetFiltered(BeerFilter filter = null);
         //Returns a Beer by the provided ID
         Beer GetByID(int id);
 
@@ -18,7 +18,7 @@ namespace ipcsmmd_webshop.Core.DomainService
         Beer Save(Beer beer);
 
         //Updates an existing Beer in the database
-        Beer Update(int id, Beer beer);
+        Beer Update(Beer beer);
 
         //Removes a Beer from the database by the provided ID
         Beer Remove(int id);
