@@ -49,16 +49,12 @@ namespace ipcsmmd_webshop.Core.ApplicationService.Impl
             return _crepo.GetAll();
         }
 
-<<<<<<< HEAD
-        public Customer UpdateCustomer(int id, Customer customer)
-=======
         public Customer RemoveCustomer(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Customer UpdateCustomer(Customer customer)
->>>>>>> peter
+        public Customer UpdateCustomer(int id, Customer customer)
         {
             throw new NotImplementedException();
         }
