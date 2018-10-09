@@ -94,7 +94,8 @@ namespace ipcsmmd_webshop.Infrastructure.Data
                 Quanity = 20
             });
 
-            ctx.Add(new OrderLine() {
+            ctx.Add(new OrderLine()
+            {
                 Beer = beer2,
                 Order = order1,
                 Quanity = 10

@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ipcsmmd_webshop.Core.ApplicationService;
+using ipcsmmd_webshop.Core.ApplicationService.Impl;
+using ipcsmmd_webshop.Core.DomainService;
 using ipcsmmd_webshop.Infrastructure.Data;
+using ipcsmmd_webshop.Infrastructure.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -40,6 +44,8 @@ namespace ipcsmmd_webshop
             {
                 services.AddDbContext<WebShopContext>(
                     opt => opt.UseSqlite("Data Source = WebShop.db"));
+                services.AddDbContext<WebShopContext>(
+                    opt => opt.EnableSensitiveDataLogging(true));
 
             }
             else if (_env.IsProduction())
@@ -48,8 +54,14 @@ namespace ipcsmmd_webshop
                     opt => opt.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));   
             }
 
-            // TODO: dependency injection
-            //services.AddScoped<>
+            //TODO: finish dependency injection ince the code is complete
+            services.AddScoped<IBeerService, BeerService>();
+            //services.AddScoped<ICustomerService, CustomerService>();
+            //services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IBeerRepository, BeerRepository>();
+            //services.AddScoped<ICustomerRepository, CustomerRepository>();
+            //services.AddScoped<IOrderRepository, OrderRepository>();
+
 
             services.AddMvc().AddJsonOptions(opt =>
             {
@@ -67,7 +79,7 @@ namespace ipcsmmd_webshop
                 using (IServiceScope scope = app.ApplicationServices.CreateScope())
                 {
                     WebShopContext ctx = scope.ServiceProvider.GetService<WebShopContext>();
-                    //TODO: seed database
+                    DBInitializer.SeedDB(ctx);
                 }
                 app.UseDeveloperExceptionPage();
             }

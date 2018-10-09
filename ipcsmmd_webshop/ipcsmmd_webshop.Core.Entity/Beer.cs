@@ -8,7 +8,7 @@ namespace ipcsmmd_webshop.Core.Entity
 
     public class Beer
     {
-        public uint ID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Brand { get; set; }
         public BeerType Type { get; set; }

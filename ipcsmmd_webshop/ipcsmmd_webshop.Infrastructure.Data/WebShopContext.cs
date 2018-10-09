@@ -19,12 +19,12 @@ namespace ipcsmmd_webshop.Infrastructure.Data
             modelBuilder.Entity<OrderLine>()
                 .HasOne(ol => ol.Order)
                 .WithMany(o => o.OrderLines)
-                .OnDelete(DeleteBehavior.SetNull);
+                .HasForeignKey(ol => ol.OrderID);
 
             modelBuilder.Entity<OrderLine>()
                 .HasOne(ol => ol.Beer)
                 .WithMany(b => b.OrderLines)
-                .OnDelete(DeleteBehavior.SetNull);
+                .HasForeignKey(ol => ol.BeerID);
 
             modelBuilder.Entity<OrderLine>()
                 .HasKey(ol => new { ol.OrderID, ol.BeerID });
