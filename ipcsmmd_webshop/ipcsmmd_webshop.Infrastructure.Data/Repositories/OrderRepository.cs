@@ -1,5 +1,6 @@
 ﻿using ipcsmmd_webshop.Core.DomainService;
 using ipcsmmd_webshop.Core.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,12 +36,24 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
         
         public Order Update(Order order)
         {
-            throw new NotImplementedException();
+            _ctx.Attach(order).State = EntityState.Modified;
+            _ctx.Entry(order).Collection(o => o.OrderLines).IsModified = true;
+            var orderlines = _ctx.OrderLines.Where(ol => ol.Order.ID == order.ID &&
+                !order.OrderLines.Exists(o => o.BeerID == ol.BeerID && o.OrderID == ol.OrderID));
+
+            foreach (var orderline in orderlines) {
+                order.Customer = null;
+                _ctx.Entry(orderline).Reference(ol => ol.Order).IsModified = true;
+            }
+            _ctx.SaveChanges();
+            return order;
         }
 
         public Order Delete(int id)
         {
-            throw new NotImplementedException();
+            Order orderRemoved = _ctx.Orders.Remove(new Order { ID = id }).Entity;
+            _ctx.SaveChanges();
+            return orderRemoved;
         }
     }
 }

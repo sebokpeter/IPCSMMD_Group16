@@ -47,7 +47,9 @@ namespace ipcsmmd_webshop.Core.ApplicationService.Impl
 
         public Customer UpdateCustomer(Customer customer)
         {
-            if (customer.ID == 0)
+            if (customer == null)
+                throw new ArgumentException("Missing update data!");
+            else if (customer.ID == 0)
                 throw new ArgumentException("Missing customer ID!");
             return _crepo.Update(customer);
         }

@@ -65,12 +65,18 @@ namespace ipcsmmd_webshop.Core.ApplicationService.Impl
 
         public Order RemoveOrder(int id)
         {
-            throw new NotImplementedException();
+            if (id == 0)
+                throw new ArgumentException("Missing order ID!");
+            return _repo.Delete(id);
         }
 
         public Order UpdateOrder(Order order)
         {
-            throw new NotImplementedException();
+            if (order == null)
+                throw new ArgumentException("Missing update data!");
+            else if (order.ID == 0)
+                throw new ArgumentException("Missing order ID!");
+            return _repo.Update(order);
         }
     }
 }
