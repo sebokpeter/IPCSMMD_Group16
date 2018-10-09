@@ -44,8 +44,7 @@ namespace ipcsmmd_webshop
             {
                 services.AddDbContext<WebShopContext>(
                     opt => opt.UseSqlite("Data Source = WebShop.db"));
-                services.AddDbContext<WebShopContext>(
-                    opt => opt.EnableSensitiveDataLogging(true));
+
 
             }
             else if (_env.IsProduction())

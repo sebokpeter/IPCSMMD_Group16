@@ -54,9 +54,18 @@ namespace ipcsmmd_webshop.Core.ApplicationService.Impl
 
         public Customer RemoveCustomer(int id)
         {
+<<<<<<< HEAD
+            throw new NotImplementedException();
+        }
+
+        public Customer UpdateCustomer(int id, Customer customer)
+        {
+            throw new NotImplementedException();
+=======
             if (id == 0)
                 throw new ArgumentException("Missing customer ID!");
             return _crepo.Remove(id);
+>>>>>>> master
         }
     }
 }

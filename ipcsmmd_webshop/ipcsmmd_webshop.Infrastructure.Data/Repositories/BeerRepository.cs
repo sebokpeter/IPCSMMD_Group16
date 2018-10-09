@@ -1,5 +1,6 @@
 ﻿using ipcsmmd_webshop.Core.DomainService;
 using ipcsmmd_webshop.Core.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
 
         public IEnumerable<Beer> GetAll()
         {
-            return _ctx.Beers;
+            return _ctx.Beers.Include(b => b.OrderLines);
         }
 
         public Beer GetByID(int id)
