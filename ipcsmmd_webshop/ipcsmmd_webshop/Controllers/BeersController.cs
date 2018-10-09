@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ipcsmmd_webshop.Core.ApplicationService;
+using ipcsmmd_webshop.Core.Entity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,13 +22,25 @@ namespace ipcsmmd_webshop.Controllers
 
         // GET: api/Beers
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<List<Beer>> Get([FromQuery] BeerFilter filter)
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                if (filter.CurrentPage == 0 && filter.ItemsPerPage == 0 && filter.IsAscending == false && filter.SearchField == BeerFilter.Field.Brand)
+                {
+                    return Ok(_service.GetBeers());
+                }
+
+                return Ok(_service.GetFilteredBeers(filter));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // GET: api/Beers/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
