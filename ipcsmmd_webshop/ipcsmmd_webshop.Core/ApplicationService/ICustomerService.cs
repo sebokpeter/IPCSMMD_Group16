@@ -12,7 +12,7 @@ namespace ipcsmmd_webshop.Core.ApplicationService
         /// Returns an unfiltered, unordered list of customers.
         /// </summary>
         /// <returns>A list of customers</returns>
-        IEnumerable<Customer> ReadCustomers();
+        List<Customer> GetAllCustomers();
 
         /// <summary>
         /// Gets a customer based on ID.
@@ -31,9 +31,15 @@ namespace ipcsmmd_webshop.Core.ApplicationService
         /// <summary>
         /// Updates the existing customer with the provided ID.
         /// </summary>
-        /// <param name="id">The existing customer's ID</param>
         /// <param name="customer">Update data</param>
         /// <returns></returns>
-        Customer UpdateCustomer(int id, Customer customer);
+        Customer UpdateCustomer(Customer customer);
+
+        /// <summary>
+        /// Removes customer with the provided ID.
+        /// </summary>
+        /// <param name="id">Customer id</param>
+        /// <returns></returns>
+        Customer RemoveCustomer(int id);
     }
 }

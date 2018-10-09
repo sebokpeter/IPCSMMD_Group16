@@ -15,7 +15,7 @@ namespace TestCore.ApplicationService.Impl
     {
         #region AddCustomer
         [Fact]
-        public void CreateCustomerWithIDThrowsException()
+        public void AddCustomerWithIDThrowsException()
         {
             var moqRep = new Mock<ICustomerRepository>();
             ICustomerService customerService = new CustomerService(moqRep.Object);
@@ -27,7 +27,7 @@ namespace TestCore.ApplicationService.Impl
         }
 
         [Fact]
-        public void CreateCustomerWithoutFirstNameThrowsException()
+        public void AddCustomerWithoutFirstNameThrowsException()
         {
             var moqRep = new Mock<ICustomerRepository>();
             ICustomerService customerService = new CustomerService(moqRep.Object);
@@ -42,7 +42,7 @@ namespace TestCore.ApplicationService.Impl
         }
 
         [Fact]
-        public void CreateCustomerWithoutLastNameThrowsException()
+        public void AddCustomerWithoutLastNameThrowsException()
         {
             var moqRep = new Mock<ICustomerRepository>();
             ICustomerService customerService = new CustomerService(moqRep.Object);
@@ -57,7 +57,7 @@ namespace TestCore.ApplicationService.Impl
         }
 
         [Fact]
-        public void CreateCustomerWithoutEmailThrowsException()
+        public void AddCustomerWithoutEmailThrowsException()
         {
             var moqRep = new Mock<ICustomerRepository>();
             ICustomerService customerService = new CustomerService(moqRep.Object);
@@ -72,7 +72,7 @@ namespace TestCore.ApplicationService.Impl
         }
 
         [Fact]
-        public void CreateCustomerWithoutAddressThrowsException()
+        public void AddCustomerWithoutAddressThrowsException()
         {
             var moqRep = new Mock<ICustomerRepository>();
             ICustomerService customerService = new CustomerService(moqRep.Object);
@@ -85,15 +85,69 @@ namespace TestCore.ApplicationService.Impl
             Exception e = Assert.Throws<InvalidDataException>(() => customerService.AddCustomer(newCustomer));
             Assert.Equal("Cannot add customer without address!", e.Message);
         }
+
+        [Fact]
+        public void AddCustomersShouldCallAddOnce()
+        {
+            var moqRep = new Mock<ICustomerRepository>();
+            ICustomerService service = new CustomerService(moqRep.Object);
+            Customer newCustomer = new Customer() {
+                Email = "cust1@fakemail.dk",
+                Address = "BongiStreet",
+                FirstName = "John",
+                LastName = "Olesen",
+                PhoneNumber = "+4512345678"
+            };
+            service.AddCustomer(newCustomer);
+            moqRep.Verify(x => x.Save(newCustomer), Times.Once);
+        }
         #endregion
 
         #region GetCustomer
         [Fact]
-        public void GetCustommerWithIDMissingIDThrowsException()
+        public void GetCustomerWithIDMissingIDThrowsException()
         {
             var moqRep = new Mock<ICustomerRepository>();
             ICustomerService customerService = new CustomerService(moqRep.Object);
             Exception e = Assert.Throws<ArgumentException>(() => customerService.GetCustomerByID(new int()));
+            Assert.Equal("Missing customer ID!", e.Message);
+        }
+
+        [Fact]
+        public void GetAllCustomersShouldCallGetAllOnce()
+        {
+            var moqRep = new Mock<ICustomerRepository>();
+            ICustomerService service = new CustomerService(moqRep.Object);
+
+            service.GetAllCustomers();
+            moqRep.Verify(x => x.GetAll(), Times.Once);
+        }
+
+        [Fact]
+        public void GetCustomerByIDShouldCallGetByIDOnce()
+        {
+            var moqRep = new Mock<ICustomerRepository>();
+            ICustomerService service = new CustomerService(moqRep.Object);
+
+            service.GetCustomerByID(1);
+            moqRep.Verify(x => x.GetCustomerByID(1), Times.Once);
+        }
+        #endregion
+
+        #region UpdateCustomer
+        [Fact]
+        public void UpdateCustomerWithMissingIDThrowsException()
+        {
+            var moqRep = new Mock<ICustomerRepository>();
+            ICustomerService customerService = new CustomerService(moqRep.Object);
+            Customer newCustomer = new Customer() {
+                Email = "cust1@fakemail.dk",
+                Address = "BongiStreet",
+                FirstName = "John",
+                LastName = "Olesen",
+                PhoneNumber = "+4512345678"
+            };
+            Exception e = Assert.Throws<ArgumentException>(() => customerService.UpdateCustomer(newCustomer));
             Assert.Equal("Missing customer ID!", e.Message);
         }
         #endregion
