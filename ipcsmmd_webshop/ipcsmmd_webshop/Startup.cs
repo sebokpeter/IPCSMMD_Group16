@@ -55,10 +55,10 @@ namespace ipcsmmd_webshop
 
             //TODO: finish dependency injection ince the code is complete
             services.AddScoped<IBeerService, BeerService>();
-            //services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ICustomerService, CustomerService>();
             //services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IBeerRepository, BeerRepository>();
-            //services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
             //services.AddScoped<IOrderRepository, OrderRepository>();
 
 
