@@ -113,6 +113,8 @@ namespace ipcsmmd_webshop.Infrastructure.Data
                 Quanity = 1
             });
             #endregion
+
+            ctx.SaveChanges();
         }
     }
 }

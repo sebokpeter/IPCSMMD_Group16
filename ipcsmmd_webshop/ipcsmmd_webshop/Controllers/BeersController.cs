@@ -24,7 +24,7 @@ namespace ipcsmmd_webshop.Controllers
         {
             try
             {
-                if (filter.CurrentPage == 0 && filter.ItemsPerPage == 0 && filter.IsAscending == false && filter.SearchField == BeerFilter.Field.Brand)
+                if (filter.CurrentPage == 0 && filter.ItemsPerPage == 0 && filter.IsAscending == false && filter.SearchField == BeerFilter.Field.Id)
                 {
                     return Ok(_service.GetBeers());
                 }
@@ -79,7 +79,7 @@ namespace ipcsmmd_webshop.Controllers
 
                 if (_service.AddBeer(value) != null)
                 {
-                    string s = String.Format($"Beer with the ID of {0} has been added!");
+                    string s = String.Format($"Beer with the ID of {value.ID} has been added!");
                     return StatusCode(StatusCodes.Status201Created, s);
                 }
                 else
@@ -87,7 +87,7 @@ namespace ipcsmmd_webshop.Controllers
                     return BadRequest("Could not add the beer!");
                 }
             }
-            catch ( Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -121,7 +121,7 @@ namespace ipcsmmd_webshop.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            
+
         }
 
         // DELETE: api/ApiWithActions/5
