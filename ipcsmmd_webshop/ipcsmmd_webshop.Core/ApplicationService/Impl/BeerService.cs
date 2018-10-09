@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using ipcsmmd_webshop.Core.DomainService;
 using ipcsmmd_webshop.Core.Entity;
@@ -44,17 +45,30 @@ namespace ipcsmmd_webshop.Core.ApplicationService.Impl
 
         public Beer GetBeerByID(int id)
         {
-            throw new NotImplementedException();
+            if (id < 1)
+            {
+                throw new InvalidDataException("ID must be greater than 0!");
+            }
+
+            return _beerRepo.GetByID(id);
         }
 
         public List<Beer> GetBeers()
         {
-            throw new NotImplementedException();
+            return _beerRepo.GetAll().ToList();
         }
 
         public List<Beer> GetBeersByPrice(bool isAscending)
         {
-            throw new NotImplementedException();
+            if (isAscending)
+            {
+                return _beerRepo.GetAll().OrderBy(x => x.Price).ToList();
+            }
+            else
+            {
+                return _beerRepo.GetAll().OrderByDescending(x => x.Price).ToList();
+            }
+
         }
 
         public List<Beer> GetBeersByType(BeerType type)
