@@ -224,5 +224,100 @@ namespace TestCore.ApplicationService.Impl
 
             Assert.Equal(mockBeers.ToList(), beersDescending);
         }
+
+        /******************************************************************************/
+        //GetBeersByType test//
+
+        [Fact]
+        public void GetBeersByTypeShouldCallRepoGetAllOnce()
+        {
+            var repo = new Mock<IBeerRepository>();
+            IBeerService service = new BeerService(repo.Object);
+
+            service.GetBeersByType(BeerType.Brown);
+            repo.Verify(x => x.GetAll(), Times.Once);
+        }
+
+        [Fact]
+        public void GetBeersByTypeShouldOnlyReturnCorrectTypes()
+        {
+            var repo = new Mock<IBeerRepository>();
+            IBeerService service = new BeerService(repo.Object);
+
+            IEnumerable<Beer> mockBeers = new Beer[] {
+                new Beer()
+                {
+                     Name = "Best_Beer_Dark_1",
+                     Brand = "Best_Brand",
+                     Percentage = 50f,
+                     Price = 1d,
+                    Type = BeerType.Dark
+                },
+                new Beer()
+                {
+                     Name = "Best_Beer_Dark_2",
+                     Brand = "Best_Brand",
+                     Percentage = 50f,
+                     Price = 1d,
+                    Type = BeerType.Dark
+                },
+                new Beer()
+                {
+                     Name = "Bestes_Beer_Brown_1",
+                     Brand = "Bestes_Brand",
+                     Percentage = 50f,
+                     Price = 100d,
+                     Type = BeerType.Brown
+                },
+                 new Beer()
+                {
+                     Name = "Bestes_Beer_Brown_2",
+                     Brand = "Bestes_Brand",
+                     Percentage = 50f,
+                     Price = 50d,
+                     Type = BeerType.Brown
+                },
+                  new Beer()
+                {
+                     Name = "Best_Beer_Light_1",
+                     Brand = "Best_Brand",
+                     Percentage = 50f,
+                     Price = 1d,
+                    Type = BeerType.Light
+                },
+                new Beer()
+                {
+                     Name = "Best_Beer_Light_2",
+                     Brand = "Best_Brand",
+                     Percentage = 50f,
+                     Price = 1d,
+                    Type = BeerType.Light
+                },
+            };
+
+            repo.Setup(x => x.GetAll()).Returns(mockBeers);
+
+            List<Beer> beers = service.GetBeersByType(BeerType.Brown);
+
+            if (!beers.TrueForAll(x => x.Type == BeerType.Brown))
+            {
+                throw new Xunit.Sdk.XunitException($"Incorrect type.\nExpected: {BeerType.Brown}");
+            }
+
+            beers = service.GetBeersByType(BeerType.Dark);
+
+            if (!beers.TrueForAll(x => x.Type == BeerType.Dark))
+            {
+                throw new Xunit.Sdk.XunitException($"Incorrect type.\nExpected: {BeerType.Dark}");
+            }
+
+            beers = service.GetBeersByType(BeerType.Light);
+
+            if (!beers.TrueForAll(x => x.Type == BeerType.Light))
+            {
+                throw new Xunit.Sdk.XunitException($"Incorrect type.\nExpected: {BeerType.Light}");
+            }
+
+        }
     }
 }

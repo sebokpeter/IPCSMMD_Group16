@@ -71,9 +71,10 @@ namespace ipcsmmd_webshop.Core.ApplicationService.Impl
 
         }
 
+
         public List<Beer> GetBeersByType(BeerType type)
         {
-            throw new NotImplementedException();
+            return _beerRepo.GetAll().Where(x => x.Type == type).ToList();
         }
 
         public List<Beer> GetFilteredBeers(BeerFilter filter)

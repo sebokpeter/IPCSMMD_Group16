@@ -27,7 +27,7 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
             return _ctx.Beers.FirstOrDefault(b => b.ID == id);
         }
 
-        public IEnumerable<Beer> GetFiltered()
+        public IEnumerable<Beer> GetFiltered(BeerFilter beerFilter)
         {
             throw new NotImplementedException();
         }
