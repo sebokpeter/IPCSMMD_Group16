@@ -150,6 +150,27 @@ namespace TestCore.ApplicationService.Impl
             Exception e = Assert.Throws<ArgumentException>(() => customerService.UpdateCustomer(newCustomer));
             Assert.Equal("Missing customer ID!", e.Message);
         }
+
+        [Fact]
+        public void UpdateCustomerWithCustomerNullThrowsException()
+        {
+            var moqRep = new Mock<ICustomerRepository>();
+            ICustomerService customerService = new CustomerService(moqRep.Object);
+            Customer newCustomer = null;
+            Exception e = Assert.Throws<ArgumentException>(() => customerService.UpdateCustomer(newCustomer));
+            Assert.Equal("Missing update data!", e.Message);
+        }
+        #endregion
+
+        #region RemoveCustomer
+        [Fact]
+        public void RemoveCustomerWithMissingIDThrowsException()
+        {
+            var moqRep = new Mock<ICustomerRepository>();
+            ICustomerService customerService = new CustomerService(moqRep.Object);
+            Exception e = Assert.Throws<ArgumentException>(() => customerService.RemoveCustomer(new int()));
+            Assert.Equal("Missing customer ID!", e.Message);
+        }
         #endregion
     }
 }

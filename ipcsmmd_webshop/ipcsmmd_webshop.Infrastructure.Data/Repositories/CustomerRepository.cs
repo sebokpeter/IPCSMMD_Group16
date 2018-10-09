@@ -51,7 +51,7 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
 
         public Customer Remove(int id)
         {
-            Customer custRemoved = _ctx.Remove(new Customer { ID = id }).Entity;
+            Customer custRemoved = _ctx.Customers.Remove(new Customer { ID = id }).Entity;
             _ctx.SaveChanges();
             return custRemoved;
         }

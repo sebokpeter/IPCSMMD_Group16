@@ -216,5 +216,42 @@ namespace TestCore.ApplicationService.Impl
             service.GetOrderByID(1);
             repo.Verify(x => x.GetOrderByID(1), Times.Once);
         }
+
+        #region UpdateOrder
+        [Fact]
+        public void UpdateOrderWithMissingIDThrowsException()
+        {
+            var moqRep = new Mock<IOrderRepository>();
+            IOrderService orderService = new OrderService(moqRep.Object);
+            Order newOrder = new Order() {
+                Customer = new Customer() { ID = 1 },
+                DeliveryDate = DateTime.Now,
+                OrderDate = DateTime.Now
+            };
+            Exception e = Assert.Throws<ArgumentException>(() => orderService.UpdateOrder(newOrder));
+            Assert.Equal("Missing order ID!", e.Message);
+        }
+
+        [Fact]
+        public void UpdateOrderWithOrderNullThrowsException()
+        {
+            var moqRep = new Mock<IOrderRepository>();
+            IOrderService orderService = new OrderService(moqRep.Object);
+            Order newOrder = null;
+            Exception e = Assert.Throws<ArgumentException>(() => orderService.UpdateOrder(newOrder));
+            Assert.Equal("Missing update data!", e.Message);
+        }
+        #endregion
+
+        #region RemoveOrder
+        [Fact]
+        public void RemoveOrderWithMissingIDThrowsException()
+        {
+            var moqRep = new Mock<IOrderRepository>();
+            IOrderService orderService = new OrderService(moqRep.Object);
+            Exception e = Assert.Throws<ArgumentException>(() => orderService.RemoveOrder(new int()));
+            Assert.Equal("Missing order ID!", e.Message);
+        }
+        #endregion
     }
 }
