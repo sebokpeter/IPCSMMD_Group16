@@ -13,8 +13,7 @@ namespace TestCore.ApplicationService.Impl
 {
     public class OrderServiceTest
     {
-        /******************************************************************************/
-                                    //Create tests//
+        #region CreateTests
         [Fact]
         public void AddingNullOrderThrowsException()
         {
@@ -178,8 +177,9 @@ namespace TestCore.ApplicationService.Impl
 
         }
 
-        /******************************************************************************/
-                                //GetOrders test///
+        #endregion
+
+        #region GetAllOrdersTest
 
         [Fact]
         public void GettingAllOrdersShouldCallRepoGetAllOnce()
@@ -191,9 +191,9 @@ namespace TestCore.ApplicationService.Impl
             repo.Verify(x => x.GetAll(), Times.Once);
         }
 
-        /******************************************************************************/
-                            //GetOrderByID test///
+        #endregion
 
+        #region GetOrderByID test
         [Theory]
         [InlineData(0)]
         [InlineData(-100)]
@@ -216,6 +216,7 @@ namespace TestCore.ApplicationService.Impl
             service.GetOrderByID(1);
             repo.Verify(x => x.GetOrderByID(1), Times.Once);
         }
+        #endregion
 
         #region UpdateOrder
         [Fact]
