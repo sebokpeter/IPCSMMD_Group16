@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ipcsmmd_webshop.Core.ApplicationService;
 using ipcsmmd_webshop.Core.Entity;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ipcsmmd_webshop.Controllers
