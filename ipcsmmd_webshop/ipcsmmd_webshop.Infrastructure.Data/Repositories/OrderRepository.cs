@@ -31,7 +31,10 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
 
         public Order GetOrderByID(int id)
         {
-            return _ctx.Orders.FirstOrDefault(x => x.ID == id);
+            return _ctx.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.OrderLines)
+                .FirstOrDefault(x => x.ID == id);
         }
         
         public Order Update(Order order)

@@ -32,7 +32,7 @@ namespace ipcsmmd_webshop.Controllers
         }
 
         // GET: api/Orders/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public ActionResult<Order> Get(int id)
         {
             try

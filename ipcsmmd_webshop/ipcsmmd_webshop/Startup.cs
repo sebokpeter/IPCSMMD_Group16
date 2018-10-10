@@ -56,10 +56,11 @@ namespace ipcsmmd_webshop
             services.AddScoped<IBeerService, BeerService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IOrderLineService, OrderLineService>();
             services.AddScoped<IBeerRepository, BeerRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
-
+            services.AddScoped<IOrderLineReporitory, OrderLineRepository>();
 
             services.AddMvc().AddJsonOptions(opt =>
             {
