@@ -82,7 +82,6 @@ namespace ipcsmmd_webshop
                 {
                     WebShopContext ctx = scope.ServiceProvider.GetService<WebShopContext>();
                     ctx.Database.EnsureCreated();
-                    var a = ctx.Beers.Count();
                 }
 
                 app.UseHsts();
