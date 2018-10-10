@@ -95,6 +95,9 @@ namespace ipcsmmd_webshop
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(builder => builder.WithOrigins("https://ipcsmmd-webshop-group16.azurewebsites.net").AllowAnyMethod());
+
             app.UseMvc();
         }
     }
