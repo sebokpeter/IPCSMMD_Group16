@@ -40,6 +40,8 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
         {
             _ctx.Attach(cust).State = EntityState.Modified;
             _ctx.Entry(cust).Collection(c => c.Orders).IsModified = true;
+            if (cust.Orders == null)
+                cust.Orders = new List<Order>();
             var orders = _ctx.Orders.Where(o => o.Customer.ID == cust.ID && !cust.Orders.Exists(co => co.ID == o.ID));
             foreach (var order in orders)
             {
