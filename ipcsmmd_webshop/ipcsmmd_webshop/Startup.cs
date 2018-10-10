@@ -50,7 +50,7 @@ namespace ipcsmmd_webshop
             else if (_env.IsProduction())
             {
                 services.AddDbContext<WebShopContext>(
-                    opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));   
+                    opt => opt.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));   
             }
 
             services.AddScoped<IBeerService, BeerService>();
