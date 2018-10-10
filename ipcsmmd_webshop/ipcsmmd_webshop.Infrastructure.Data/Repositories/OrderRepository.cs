@@ -19,12 +19,12 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
 
         public IEnumerable<Order> GetAll()
         {
-            return _ctx.Orders;
+            return _ctx.Orders.Include(o => o.Customer);
         }
 
         public Order Save(Order order)
         {
-            _ctx.Attach(order).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _ctx.Attach(order).State = EntityState.Added;
             _ctx.SaveChanges();
             return order;
         }
@@ -39,12 +39,13 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
             _ctx.Attach(order).State = EntityState.Modified;
             _ctx.Entry(order).Collection(o => o.OrderLines).IsModified = true;
             var orderlines = _ctx.OrderLines.Where(ol => ol.Order.ID == order.ID &&
-                !order.OrderLines.Exists(o => o.BeerID == ol.BeerID && o.OrderID == ol.OrderID));
+                !order.OrderLines.Exists(ol2 => ol2.BeerID == ol.BeerID && ol2.OrderID == ol.OrderID));
 
             foreach (var orderline in orderlines) {
-                order.Customer = null;
+                orderline.Order = null;
                 _ctx.Entry(orderline).Reference(ol => ol.Order).IsModified = true;
             }
+
             _ctx.SaveChanges();
             return order;
         }

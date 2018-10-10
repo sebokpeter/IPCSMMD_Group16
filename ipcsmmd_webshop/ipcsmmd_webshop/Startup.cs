@@ -53,7 +53,6 @@ namespace ipcsmmd_webshop
                     opt => opt.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));   
             }
 
-            //TODO: finish dependency injection ince the code is complete
             services.AddScoped<IBeerService, BeerService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IOrderService, OrderService>();
