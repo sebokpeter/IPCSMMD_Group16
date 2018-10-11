@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
-using System.Linq;
 
 namespace ipcsmmd_webshop
 {
@@ -82,9 +81,9 @@ namespace ipcsmmd_webshop
                 {
                     WebShopContext ctx = scope.ServiceProvider.GetService<WebShopContext>();
                     ctx.Database.EnsureCreated();
-                    var a = ctx.Beers.Count();
                 }
 
+                int a = 1;
                 app.UseHsts();
             }
 
