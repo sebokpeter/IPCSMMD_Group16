@@ -67,6 +67,7 @@ namespace ipcsmmd_webshop.Controllers
         {
             try
             {
+                Beer temp = _service.AddBeer(value);
                 value.ID = 0;
                 if (String.IsNullOrEmpty(value.Name))
                 {
@@ -77,10 +78,11 @@ namespace ipcsmmd_webshop.Controllers
                     return BadRequest("Cannot add a beer without brand!");
                 }
 
-                if (_service.AddBeer(value) != null)
+                if (temp != null)
                 {
                     string s = String.Format($"Beer with the ID of {value.ID} has been added!");
-                    return StatusCode(StatusCodes.Status201Created, s);
+                    //return StatusCode(StatusCodes.Status201Created, s);
+                    return Ok(temp);
                 }
                 else
                 {
