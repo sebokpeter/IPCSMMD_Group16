@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
-using System.Linq;
 
 namespace ipcsmmd_webshop
 {
@@ -50,11 +49,11 @@ namespace ipcsmmd_webshop
             services.AddScoped<IBeerService, BeerService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IOrderLineService, OrderLineService>();
+           // services.AddScoped<IOrderLineService, OrderLineService>();
             services.AddScoped<IBeerRepository, BeerRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped<IOrderLineReporitory, OrderLineRepository>();
+           // services.AddScoped<IOrderLineReporitory, OrderLineRepository>();
 
             services.AddMvc().AddJsonOptions(opt =>
             {
@@ -87,7 +86,7 @@ namespace ipcsmmd_webshop
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             //app.UseCors(builder => builder.WithOrigins("https://ipcsmmd-webshop-group16.azurewebsites.net").AllowAnyMethod());
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());

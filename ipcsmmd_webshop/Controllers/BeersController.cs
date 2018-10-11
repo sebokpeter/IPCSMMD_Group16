@@ -67,7 +67,8 @@ namespace ipcsmmd_webshop.Controllers
         {
             try
             {
-                value.ID = 0;
+                Beer temp = _service.AddBeer(value);
+                //value.ID = 0;
                 if (String.IsNullOrEmpty(value.Name))
                 {
                     return BadRequest("Cannot add a beer without name!");
@@ -77,10 +78,11 @@ namespace ipcsmmd_webshop.Controllers
                     return BadRequest("Cannot add a beer without brand!");
                 }
 
-                if (_service.AddBeer(value) != null)
+                if (temp != null)
                 {
                     string s = String.Format($"Beer with the ID of {value.ID} has been added!");
-                    return StatusCode(StatusCodes.Status201Created, s);
+                    //return StatusCode(StatusCodes.Status201Created, s);
+                    return Ok(temp);
                 }
                 else
                 {
@@ -99,6 +101,7 @@ namespace ipcsmmd_webshop.Controllers
         {
             try
             {
+                Beer temp = _service.UpdateBeer(value);
                 if (id < 1)
                 {
                     return BadRequest("Cannot update non-existing beer!");
@@ -108,9 +111,10 @@ namespace ipcsmmd_webshop.Controllers
                     return BadRequest("Parameter mismatch: supplied ID and beer ID are not equal!");
                 }
 
-                if (_service.UpdateBeer(value) != null)
+                if (temp != null)
                 {
-                    return Ok($"Beer with the ID of {id} has been updated!");
+                    //return Ok($"Beer with the ID of {id} has been updated!");
+                    return Ok(temp);
                 }
                 else
                 {
@@ -130,14 +134,16 @@ namespace ipcsmmd_webshop.Controllers
         {
             try
             {
+                Beer temp = _service.RemoveBeer(id);
                 if (id < 1)
                 {
                     return BadRequest("Cannot delete a non-existing beer!");
                 }
 
-                if (_service.RemoveBeer(id) != null)
+                if (temp != null)
                 {
-                    return Ok($"Beer with the ID of {id} has been deleted!");
+                    //return Ok($"Beer with the ID of {id} has been deleted!");
+                    return Ok(temp);
                 }
                 else
                 {

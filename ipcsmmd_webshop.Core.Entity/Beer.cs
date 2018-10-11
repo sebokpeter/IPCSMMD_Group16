@@ -16,7 +16,7 @@ namespace ipcsmmd_webshop.Core.Entity
         public double Price { get; set; }
         public string ImageURL { get; set; }
         public uint Stock { get; set; }
-        public List<OrderLine> OrderLines { get; set; }
+       // public List<OrderLine> OrderLines { get; set; }
 
         public Beer()
         {

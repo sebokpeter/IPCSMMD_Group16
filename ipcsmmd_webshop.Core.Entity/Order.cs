@@ -9,7 +9,7 @@ namespace ipcsmmd_webshop.Core.Entity
         public int ID { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime DeliveryDate { get; set; }
-        public List<OrderLine> OrderLines { get; set; }
+       // public List<OrderLine> OrderLines { get; set; }
         public Customer Customer { get; set; }
     }
 }
