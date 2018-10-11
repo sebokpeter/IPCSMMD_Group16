@@ -90,13 +90,14 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
         public Beer Save(Beer beer)
         {
             Beer beerSave = _ctx.Beers.Add(beer).Entity;
+            
             _ctx.SaveChanges();
             return beerSave;
         }
 
         public Beer Update(Beer beer)
         {
-            _ctx.Attach(beer).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _ctx.Attach(beer).State = EntityState.Modified;
             _ctx.SaveChanges();
             return beer;
         }
