@@ -15,8 +15,7 @@ namespace TestCore.ApplicationService.Impl
     public class BeerServiceTest
     {
 
-        /******************************************************************************/
-                        //Create tests//
+        #region CreateTests
         [Fact]
         public void CreateNewBeerWithNullBeerThrowsException()
         {
@@ -114,9 +113,9 @@ namespace TestCore.ApplicationService.Impl
             beerService.AddBeer(newBeer);
             repo.Verify(x => x.Save(It.IsAny<Beer>()), Times.Once);
         }
+        #endregion
 
-        /******************************************************************************/
-                                //GetByID tests//
+        #region GetByIDTests
 
         [Theory]
         [InlineData(0)]
@@ -140,8 +139,9 @@ namespace TestCore.ApplicationService.Impl
             repo.Verify(x => x.GetByID(1), Times.Once);
         }
 
-        /******************************************************************************/
-                                //GetAll test//
+        #endregion
+
+        #region GetAllTest
 
         [Fact]
         public void GetBeersShouldCallRepoGetAllOnce()
@@ -153,8 +153,9 @@ namespace TestCore.ApplicationService.Impl
             repo.Verify(x => x.GetAll(), Times.Once);
         }
 
-        /******************************************************************************/
-                                //GetBeersByPrice test//
+        #endregion
+
+        #region GetBeersByPrice test
 
         [Fact]
         public void GetBeersByPriceShouldCallRepoGetAllOnce()
@@ -225,8 +226,9 @@ namespace TestCore.ApplicationService.Impl
             Assert.Equal(mockBeers.ToList(), beersDescending);
         }
 
-        /******************************************************************************/
-                                //GetBeersByType test//
+        #endregion
+
+        #region GetBeersByTypeTests
 
         [Fact]
         public void GetBeersByTypeShouldCallRepoGetAllOnce()
@@ -320,8 +322,9 @@ namespace TestCore.ApplicationService.Impl
 
         }
 
-        /******************************************************************************/
-                            //GetFilteredBeers test//
+        #endregion
+
+        #region GetFilteredBeersTests
 
         [Fact]
         public void GetFilteredBeersShouldCallRepoGetFilteredOnce()
@@ -342,8 +345,9 @@ namespace TestCore.ApplicationService.Impl
 
         }
 
-        /******************************************************************************/
-                           //RemoveBeer test//
+        #endregion
+
+        #region RemoveBeerTest
 
         [Fact]
         public void RemoveBeerShouldCallRepoRemoveOnce()
@@ -364,8 +368,9 @@ namespace TestCore.ApplicationService.Impl
             repo.Verify(x => x.Remove((int)beerToRemove.ID));
         }
 
-        /******************************************************************************/
-                //UpdateBeer test//
+        #endregion
+
+        #region UpdateBeerTest
 
         [Fact]
         public void UpdateBeerShouldCallRepoUpdateOnce()
@@ -385,5 +390,7 @@ namespace TestCore.ApplicationService.Impl
             service.UpdateBeer(beerToUpdate);
             repo.Verify(x => x.Update( beerToUpdate));
         }
+
+        #endregion
     }
 }
