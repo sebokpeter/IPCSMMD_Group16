@@ -88,8 +88,8 @@ namespace ipcsmmd_webshop
 
             //app.UseHttpsRedirection();
 
-            app.UseCors(builder => builder.WithOrigins("https://ipcsmmd-webshop-group16.azurewebsites.net").AllowAnyMethod().AllowAnyHeader());
-            //app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            //app.UseCors(builder => builder.WithOrigins("https://ipcsmmd-webshop-group16.azurewebsites.net").AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseMvc();
         }
     }
