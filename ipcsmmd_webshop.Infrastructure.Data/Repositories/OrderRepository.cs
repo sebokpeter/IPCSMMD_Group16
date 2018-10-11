@@ -33,21 +33,21 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
         {
             return _ctx.Orders
                 .Include(o => o.Customer)
-                .Include(o => o.OrderLines)
+               // .Include(o => o.OrderLines)
                 .FirstOrDefault(x => x.ID == id);
         }
         
         public Order Update(Order order)
         {
             _ctx.Attach(order).State = EntityState.Modified;
-            _ctx.Entry(order).Collection(o => o.OrderLines).IsModified = true;
-            var orderlines = _ctx.OrderLines.Where(ol => ol.Order.ID == order.ID &&
-                !order.OrderLines.Exists(ol2 => ol2.BeerID == ol.BeerID && ol2.OrderID == ol.OrderID));
+            //_ctx.Entry(order).Collection(o => o.OrderLines).IsModified = true;
+            //var orderlines = _ctx.OrderLines.Where(ol => ol.Order.ID == order.ID &&
+            //    !order.OrderLines.Exists(ol2 => ol2.BeerID == ol.BeerID && ol2.OrderID == ol.OrderID));
 
-            foreach (var orderline in orderlines) {
-                orderline.Order = null;
-                _ctx.Entry(orderline).Reference(ol => ol.Order).IsModified = true;
-            }
+            //foreach (var orderline in orderlines) {
+            //    orderline.Order = null;
+            //    _ctx.Entry(orderline).Reference(ol => ol.Order).IsModified = true;
+            //}
 
             _ctx.SaveChanges();
             return order;
