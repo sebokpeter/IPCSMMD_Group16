@@ -101,6 +101,7 @@ namespace ipcsmmd_webshop.Controllers
         {
             try
             {
+                Beer temp = _service.UpdateBeer(value);
                 if (id < 1)
                 {
                     return BadRequest("Cannot update non-existing beer!");
@@ -110,9 +111,10 @@ namespace ipcsmmd_webshop.Controllers
                     return BadRequest("Parameter mismatch: supplied ID and beer ID are not equal!");
                 }
 
-                if (_service.UpdateBeer(value) != null)
+                if (temp != null)
                 {
-                    return Ok($"Beer with the ID of {id} has been updated!");
+                    //return Ok($"Beer with the ID of {id} has been updated!");
+                    return Ok(temp);
                 }
                 else
                 {
@@ -132,14 +134,16 @@ namespace ipcsmmd_webshop.Controllers
         {
             try
             {
+                Beer temp = _service.RemoveBeer(id);
                 if (id < 1)
                 {
                     return BadRequest("Cannot delete a non-existing beer!");
                 }
 
-                if (_service.RemoveBeer(id) != null)
+                if (temp != null)
                 {
-                    return Ok($"Beer with the ID of {id} has been deleted!");
+                    //return Ok($"Beer with the ID of {id} has been deleted!");
+                    return Ok(temp);
                 }
                 else
                 {
