@@ -88,30 +88,31 @@ namespace ipcsmmd_webshop.Infrastructure.Data
             #endregion
 
             #region OrderLines
-            ctx.Add(new OrderLine() {
-                Beer = beer1,
-                Order = order1,
-                Quanity = 20
-            });
+            //ctx.Add(new OrderLine() {
+            //    Beer = beer1,
+            //    Order = order1,
+            //    Quanity = 20
+            //});
 
-            ctx.Add(new OrderLine()
-            {
-                Beer = beer2,
-                Order = order1,
-                Quanity = 10
-            });
 
-            ctx.Add(new OrderLine() {
-                Beer = beer3,
-                Order = order2,
-                Quanity = 50
-            });
+            //ctx.Add(new OrderLine()
+            //{
+            //    Beer = beer2,
+            //    Order = order1,
+            //    Quanity = 10
+            //});
 
-            ctx.Add(new OrderLine() {
-                Beer = beer1,
-                Order = order2,
-                Quanity = 1
-            });
+            //ctx.Add(new OrderLine() {
+            //    Beer = beer3,
+            //    Order = order2,
+            //    Quanity = 50
+            //});
+
+            //ctx.Add(new OrderLine() {
+            //    Beer = beer1,
+            //    Order = order2,
+            //    Quanity = 1
+            //});
             #endregion
 
             ctx.SaveChanges();
