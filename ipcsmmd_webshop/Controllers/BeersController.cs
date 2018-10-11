@@ -68,7 +68,7 @@ namespace ipcsmmd_webshop.Controllers
             try
             {
                 Beer temp = _service.AddBeer(value);
-                value.ID = 0;
+                //value.ID = 0;
                 if (String.IsNullOrEmpty(value.Name))
                 {
                     return BadRequest("Cannot add a beer without name!");
