@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
-using System.Linq;
 
 namespace ipcsmmd_webshop
 {
@@ -84,6 +83,7 @@ namespace ipcsmmd_webshop
                     ctx.Database.EnsureCreated();
                 }
 
+                int a = 1;
                 app.UseHsts();
             }
 
