@@ -38,6 +38,13 @@ namespace ipcsmmd_webshop.Infrastructure.Data.Repositories
                 .Skip((beerFilter.CurrentPage - 1) * beerFilter.ItemsPerPage)
                 .Take(beerFilter.ItemsPerPage);
 
+            if (!string.IsNullOrEmpty(beerFilter.SearchString))
+            {
+                string search = beerFilter.SearchString.ToLower();
+
+                beers = beers.Where(b => string.Equals(b.Name.ToLower(), search) || string.Equals(b.Brand.ToLower(), search));
+            }
+
             if (beerFilter.IsAscending)
             {
                 switch(beerFilter.SearchField)
