@@ -43,17 +43,17 @@ namespace ipcsmmd_webshop
             else if (_env.IsProduction())
             {
                 services.AddDbContext<WebShopContext>(
-                    opt => opt.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));   
+                    opt => opt.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
             }
 
             services.AddScoped<IBeerService, BeerService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IOrderService, OrderService>();
-           // services.AddScoped<IOrderLineService, OrderLineService>();
+            // services.AddScoped<IOrderLineService, OrderLineService>();
             services.AddScoped<IBeerRepository, BeerRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
-           // services.AddScoped<IOrderLineReporitory, OrderLineRepository>();
+            // services.AddScoped<IOrderLineReporitory, OrderLineRepository>();
 
             services.AddMvc().AddJsonOptions(opt =>
             {

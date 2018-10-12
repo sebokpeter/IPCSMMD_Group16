@@ -18,5 +18,6 @@ namespace ipcsmmd_webshop.Core.Entity
         public int ItemsPerPage { get; set; }
         public bool IsAscending { get; set; }
         public Field SearchField { get; set; }
+        public string SearchString { get; set; }
     }
 }
