@@ -45,7 +45,6 @@ namespace TestCore.ApplicationService.Impl
                 },
                 DeliveryDate = DateTime.Now.AddDays(5),
                 OrderDate = DateTime.Now,
-                OrderLines = null
             };
             
             Exception ex = Assert.Throws<InvalidDataException>(() => service.AddOrder(order));
@@ -71,7 +70,6 @@ namespace TestCore.ApplicationService.Impl
                     Orders = null
                 },
                 OrderDate = DateTime.Now,
-                OrderLines = null
             };
 
             Exception ex = Assert.Throws<InvalidDataException>(() => service.AddOrder(order));
@@ -97,7 +95,6 @@ namespace TestCore.ApplicationService.Impl
                     Orders = null
                 },
                 DeliveryDate = DateTime.Now.AddDays(3),
-                OrderLines = null
             };
 
             Exception ex = Assert.Throws<InvalidDataException>(() => service.AddOrder(order));
@@ -114,7 +111,6 @@ namespace TestCore.ApplicationService.Impl
             {
                 OrderDate = DateTime.Now,
                 DeliveryDate = DateTime.Now.AddDays(3),
-                OrderLines = null
             };
 
             Exception ex = Assert.Throws<InvalidDataException>(() => service.AddOrder(order));
@@ -141,7 +137,6 @@ namespace TestCore.ApplicationService.Impl
                 },
                 DeliveryDate = DateTime.Now.AddDays(5),
                 OrderDate = DateTime.Now,
-                OrderLines = null
             };
 
             service.AddOrder(order);
@@ -168,7 +163,6 @@ namespace TestCore.ApplicationService.Impl
                 },
                 DeliveryDate = DateTime.Now.AddDays(5),
                 OrderDate = DateTime.Now,
-                OrderLines = null
             };
 
             repo.Setup(x => x.Save(order)).Returns(order);
