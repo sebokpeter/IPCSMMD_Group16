@@ -36,5 +36,6 @@ namespace ipcsmmd_webshop.Infrastructure.Data
         public DbSet<Order> Orders { get; set; }
        // public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<Beer> Beers { get; set; }
+        public DbSet<Admin> Admins { get; set; }
     }
 }
