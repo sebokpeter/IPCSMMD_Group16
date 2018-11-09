@@ -101,7 +101,6 @@ namespace ipcsmmd_webshop
                 using (IServiceScope scope = app.ApplicationServices.CreateScope())
                 {
                     WebShopContext ctx = scope.ServiceProvider.GetService<WebShopContext>();
-                    ctx.Database.EnsureDeleted();
                     ctx.Database.EnsureCreated();
                     string password = "password123";
                     DBInitializer.CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
