@@ -110,6 +110,7 @@ namespace ipcsmmd_webshop
                         PasswordHash = passwordHash,
                         PasswordSalt = passwordSalt
                     });
+                    ctx.SaveChanges();
                 }
 
                 app.UseHsts();
