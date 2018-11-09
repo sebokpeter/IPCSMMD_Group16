@@ -3,13 +3,17 @@ using ipcsmmd_webshop.Core.ApplicationService.Impl;
 using ipcsmmd_webshop.Core.DomainService;
 using ipcsmmd_webshop.Infrastructure.Data;
 using ipcsmmd_webshop.Infrastructure.Data.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
+using ipcsmmd_webshop.Helpers;
+using System;
 
 namespace ipcsmmd_webshop
 {
@@ -28,11 +32,27 @@ namespace ipcsmmd_webshop
                 .AddJsonFile($"appsettings.{_env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+            JwtSecurityKey.SetSecret("This is a secret");
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = JwtSecurityKey.Key,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.FromMinutes(5)
+                };
+            });
+
+            services.AddCors();
+
             if (_env.IsDevelopment())
             {
                 services.AddDbContext<WebShopContext>(
@@ -53,6 +73,7 @@ namespace ipcsmmd_webshop
             services.AddScoped<IBeerRepository, BeerRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IAdminRepository, AdminRepository>();
             // services.AddScoped<IOrderLineReporitory, OrderLineRepository>();
 
             services.AddMvc().AddJsonOptions(opt =>
@@ -86,7 +107,9 @@ namespace ipcsmmd_webshop
                 app.UseHsts();
             }
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             //app.UseCors(builder => builder.WithOrigins("https://ipcsmmd-webshop-group16.azurewebsites.net").AllowAnyMethod().AllowAnyHeader());
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
