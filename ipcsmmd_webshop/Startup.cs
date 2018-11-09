@@ -102,15 +102,7 @@ namespace ipcsmmd_webshop
                 {
                     WebShopContext ctx = scope.ServiceProvider.GetService<WebShopContext>();
                     ctx.Database.EnsureCreated();
-                    string password = "password123";
-                    DBInitializer.CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
-                    ctx.Admins.Add(new Core.Entity.Admin
-                    {
-                        Username = "Admin",
-                        PasswordHash = passwordHash,
-                        PasswordSalt = passwordSalt
-                    });
-                    ctx.SaveChanges();
+      
                 }
 
                 app.UseHsts();

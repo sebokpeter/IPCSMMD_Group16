@@ -143,7 +143,7 @@ namespace ipcsmmd_webshop.Infrastructure.Data
         // to guess passwords, such as a rainbow table attack.
         // The password hash is 512 bits (=64 bytes) long.
         // The password salt is 1024 bits (=128 bytes) long.
-        public static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
