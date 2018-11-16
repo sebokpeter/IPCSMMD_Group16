@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ipcsmmd_webshop.Core.ApplicationService;
 using ipcsmmd_webshop.Core.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -62,6 +63,7 @@ namespace ipcsmmd_webshop.Controllers
         }
 
         // POST: api/Beers
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult<Beer> Post([FromBody] Beer value)
         {
@@ -96,6 +98,7 @@ namespace ipcsmmd_webshop.Controllers
         }
 
         // PUT: api/Beers/5
+        [Authorize(Roles = "Administrator")]
         [HttpPut("{id}")]
         public ActionResult<Beer> Put(int id, [FromBody] Beer value)
         {
@@ -129,6 +132,7 @@ namespace ipcsmmd_webshop.Controllers
         }
 
         // DELETE: api/ApiWithActions/5
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public ActionResult<Beer> Delete(int id)
         {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ipcsmmd_webshop.Core.ApplicationService;
 using ipcsmmd_webshop.Core.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,6 +46,7 @@ namespace ipcsmmd_webshop.Controllers
         }
 
         // POST: api/Customers
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult<Customer> Post([FromBody] Customer customer)
         {
@@ -57,6 +59,7 @@ namespace ipcsmmd_webshop.Controllers
         }
 
         // PUT: api/Customers/5
+        [Authorize(Roles = "Administrator")]
         [HttpPut("{id}")]
         public ActionResult<Customer> Put(int id, [FromBody] Customer customer)
         {
@@ -74,6 +77,7 @@ namespace ipcsmmd_webshop.Controllers
         }
 
         // DELETE: api/Customers/5
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public ActionResult<Customer> Delete(int id)
         {

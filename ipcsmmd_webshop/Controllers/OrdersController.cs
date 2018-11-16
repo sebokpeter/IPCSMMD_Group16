@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ipcsmmd_webshop.Core.ApplicationService;
 using ipcsmmd_webshop.Core.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ipcsmmd_webshop.Controllers
@@ -57,6 +58,7 @@ namespace ipcsmmd_webshop.Controllers
         }
 
         // POST: api/Orders
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult<Order> Post([FromBody] Order value)
         {
@@ -77,6 +79,7 @@ namespace ipcsmmd_webshop.Controllers
         }
 
         // PUT: api/Orders/5
+        [Authorize(Roles = "Administrator")]
         [HttpPut("{id}")]
         public ActionResult<Order> Put(int id, [FromBody] Order value)
         {
@@ -107,6 +110,7 @@ namespace ipcsmmd_webshop.Controllers
         }
 
         // DELETE: api/ApiWithActions/5
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public ActionResult<Order> Delete(int id)
         {
