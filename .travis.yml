@@ -7,4 +7,4 @@ install:
 
 script:
  - dotnet build
- - dotnet test IPCSMMD_Group16_Backend\ipcsmmd_webshop_test.csproj
+ - dotnet test IPCSMMD_Group16_Backend/ipcsmmd_webshop_test.csproj
