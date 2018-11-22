@@ -7,4 +7,4 @@ install:
 
 script:
  - dotnet build
- - dotnet test TDD01Tests/TDD01Tests.csproj
+ - dotnet test IPCSMMD_Group16_Backend\ipcsmmd_webshop_test.csproj
